@@ -1,0 +1,17 @@
+@media all and (max-width: 900px){
+    .heading{
+        font-size: 5vw;
+    }
+
+    #selectMonth {
+        width: calc(100% - 6px);
+    }
+
+    #selected{
+        font-size: 5vw;
+    }
+
+    .choose_month {
+        font-size: 4vw;
+    }
+}

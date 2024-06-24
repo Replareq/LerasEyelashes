@@ -47,7 +47,7 @@ def registration(request: HttpRequest, user_month: str) -> HttpResponse:
                                    {item.datetime.time: item.client for item in book_day
                                     if item.datetime > datetime.today() + timedelta(days=0.5)}])
 
-    return render(request, "client/book.html", context={"the_tittle": the_tittle,
+    return render(request, "client/registration.html", context={"the_tittle": the_tittle,
                                                         "month_data": month_data,
                                                         "all_months": [i_month + " " + str(cur_year)
                                                                        for i_month in

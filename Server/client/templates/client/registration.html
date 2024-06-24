@@ -1,0 +1,84 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/registrationstyle.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/registrationstyle.css' %}">
+<script src="{% static 'client/scripts/registration.js' %}"></script>
+{% endblock %}
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <script>alert("{{ message|safe }}");</script>
+    {% endfor %}
+{% endif %}
+<header>
+    <nav>
+        <a href="{% url 'home' %}">Домашняя страница</a>
+        <a href="hello">Контакты</a>
+    </nav>
+</header>
+<div class="booking">
+    <div class="heading">
+        <H2>Бронирование</H2>
+        <p>Выбор даты и времени</p>
+    </div>
+    <div class="choose_book">
+        <div id="selectMonth" onclick="chooseMonth()">
+            <div id="selected">{{ selected_month }}</div>
+            {% for month in all_months %}
+                <a class="a_choose" href="{% url 'registration' month %}" hidden>
+                    <div class="choose_month {% if month == selected_month %} selected_month{% endif%}">
+                        {{ month }}
+                    </div>
+                </a>
+            {% endfor%}
+        </div>
+        <table>
+            <tr>
+                <th>ПН</th>
+                <th>ВТ</th>
+                <th>СР</th>
+                <th>ЧТ</th>
+                <th>ПТ</th>
+                <th>СБ</th>
+                <th>ВС</th>
+            </tr>
+            {% for week in month_data %}
+            <tr>
+                {% for day in week %}
+                <td>
+                    {% if day.0 %}
+                    <div class="block_day" onclick="selectDay(this)">
+                        <p> {{ day.0 }} </p>
+                        <p>{% if v in day.2.values %} Есть места {% endif %}</p>
+                    </div>
+                    <div class="block_choose_day" onclick="deselectDay(this)" hidden>
+                        {{ day.0 }} {{ selected_month }} <br/>
+                        {% for k, v in day.2.items %}
+                            {% if not v %}
+                            <a href="{% url 'filling_book'%}?day={{day.0}}&monthYear={{selected_month}}&time={{k}}">Свободно в {{k}}</a>
+                            <br/>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="postscriptum">
+        <p class="paragraph_ps">* Чтобы отменить запись, свяжитесь с <a href="manager_contacts">менеджером</a> по viber или whatsapp.
+    </div>
+</div>
+
+<footer>
+    <nav>
+        <a href="/admin/">Для администратора</a>
+        <a href="manager_clients_table">Для менеджера</a>
+    </nav>
+</footer>
+{% endblock %}

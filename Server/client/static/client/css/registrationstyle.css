@@ -1,0 +1,280 @@
+header, footer{
+    background: linear-gradient(to right, #696969, 20%, #FEFEFE);
+    position: relative;
+    width: 100%;
+    height: 50px;
+
+    box-shadow: 0 0 5px #000000;
+
+    z-index: 10;
+}
+
+footer{
+    background: linear-gradient(to left, #696969, 20%, #FEFEFE);
+}
+
+nav{
+    font-family: Tahoma;
+    color: #696969;
+    padding: 15px 0;
+
+    text-align: right;
+}
+
+nav > a {
+    padding: 0 20px;
+    text-decoration: none;
+}
+
+nav > a:link, nav > a:visited{
+    color: #696969;
+}
+
+nav > a:hover{
+    color: #FF5555;
+}
+
+.booking{
+    background-color: #F7F7F7;
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 150px);
+
+    padding-bottom: 50px;
+}
+
+.heading{
+    position: relative;
+    width: 80%;
+    left: 10%;
+
+    font-family: Tahoma;
+    font-size: 1.5vw;
+    color: #696969;
+    letter-spacing: 3px;
+
+    text-shadow: 1px 1px 1px #020202;
+
+    padding: 25px 0;
+}
+
+.choose_book{
+    background-color: #FEFEFE;
+    border: solid 1px #f2f2f2;
+    box-shadow: 0 2px 10px #000;
+
+    position: relative;
+
+    width: calc(80% - 50px);
+    height: 50%;
+    left: 10%;
+
+    padding: 25px;
+}
+
+#selectMonth {
+    position: relative;
+
+    width: 30%;
+    height: 40px;
+    margin: 0 0 20px 0;
+
+    text-align: center;
+
+    background: #efefef;
+    border: 3px solid #dddddd;
+
+    cursor: pointer;
+}
+
+#selectMonth:hover {
+    box-shadow: 0 0 5px #000000;
+}
+
+#selectMonth:active {
+    background: #AAAAAA;
+    color: #AAAAAA;
+    box-shadow: inset 0 0 5px #000000;
+}
+
+#selected{
+    font-family: Tahoma;
+    font-size: 1.7vw;
+    color: #696969;
+
+    text-shadow: 1px 1px 1px #020202;
+
+    padding: 7px 0 0 0;
+
+    -ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#selected:active {
+    color: white;
+}
+
+.a_choose{
+    position: relative;
+    left: -2px;
+    top: 12px;
+
+    text-decoration: none;
+}
+
+.choose_month {
+    position: relative;
+    width: 100%;
+
+    background: #FEFEFE;
+    border: 2px solid #dddddd;
+
+    text-align: center;
+
+    font-family: Tahoma;
+    font-size: 1.3vw;
+    color: #696969;
+
+    text-shadow: 1px 1px 1px #020202;
+
+    z-index: 10;
+}
+
+.choose_month:hover {
+    border: 2px solid #444444;
+    box-shadow: 0 0 2px #000000;
+}
+
+.choose_month:active {
+    box-shadow: inset 0 0 2px #000000;
+    background: #AAAAAA;
+}
+
+.selected_month{
+    background: #efefef;
+}
+
+table {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    margin-bottom: 20px;
+	border: 1px solid #dddddd;
+	border-collapse: collapse;
+
+	font-family: Tahoma;
+}
+
+th {
+    width: 14%;
+
+	padding: 5px;
+	background: #efefef;
+	border: 1px solid #dddddd;
+
+    font-size: 1.5vw;
+    text-shadow: 1px 1px 1px #020202;
+    color: #696969;
+}
+
+td {
+    width: 14%;
+
+    border: 1px solid #dddddd;
+
+    vertical-align: top;
+    text-align: left;
+
+    font-size: 1.5vw;
+    text-shadow: 1px 1px 1px #020202;
+}
+
+.block_day{
+    width: 100%;
+    height: 7vw;
+
+    cursor: pointer;
+}
+
+.block_day:hover{
+    background-color: #F7F7F7;
+}
+
+.block_day>p{
+    padding: 0.5vw;
+}
+
+.block_choose_day{
+    position: absolute;
+    left: 0%;
+    top: 0%;
+
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+
+    background-color: #FEFEFE;
+	border: 5px solid #dddddd;
+
+	z-index: 5;
+	cursor: default;
+}
+
+.block_choose_day > a {
+    text-decoration: none;
+    font-size: 1vw;
+    text-shadow: none;
+    color: #efefef;
+
+    padding: 15px;
+
+    text-shadow: 0 0 1px #020202;
+}
+
+.block_choose_day > a:link, .block_choose_day > a:visited{
+    color: #000000;
+}
+
+.block_choose_day > a:hover{
+    color: #FF5555;
+}
+
+.postscriptum{
+    /*background-color: #F7F7F7;
+    position: relative;
+    width: calc(100% - 50px);
+
+    padding: 0 0 50px 0;*/
+
+    position: relative;
+
+    background-color: #FEFEFE;
+    border: solid 1px #f2f2f2;
+    box-shadow: 0 2px 10px #000;
+
+    width: calc(80% - 50px);
+
+    left: 10%;
+    top: 25px;
+
+    padding: 25px;
+}
+
+.paragraph_ps{
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    font-family: Tahoma;
+    font-size: 1.1vw;
+    color: #696969;
+
+}
+
+footer > nav{
+    text-align: left;
+}
