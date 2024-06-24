@@ -1,0 +1,27 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/homestyle.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/homestyle.css' %}">
+{% endblock %}
+{% block body %}
+<div class="home">
+    <div class="book">
+        <div class="name_company">
+            <p>Реснички от Леры</p>
+        </div>
+        <h2>Забронировать наращивание ресниц через сайт</h2>
+        <a href=""><div class="button_book">
+            <p>Забронировать</p>
+        </div></a>
+        <div class="about">
+            <p>О сайте</p>
+            Сайт предназначен для бронирования записи наращивания ресниц. Вы можете найти на сайте информацию
+            о текущих свободных записей, выбрать один из них и забронировать. На сайте также есть страница контактов,
+            на случай если нужно отменить бронирование, сообщить об ошибки сайта или связаться с администратором.
+            Отдел сайта "для дминистратора" предназначен только администратору. Пожалуйста, соблюдайте правила сайта.
+        </div>
+    </div>
+</div>
+{% endblock %}

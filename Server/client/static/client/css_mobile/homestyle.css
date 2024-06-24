@@ -1,0 +1,64 @@
+@media all and (max-width: 900px){
+    .home{
+        background: url("../resource/eyelashes_human_straight_mobile.png") no-repeat;
+        background-size: contain;
+        background-position: top;
+    }
+
+    .book{
+        top: 10%;
+
+        width: 80%;
+    }
+
+    .name_company > p{
+        font-size: 5vw;
+        color: #696969;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 7vw;
+
+        padding: 30px 0;
+
+        text-align: center;
+    }
+
+    a {
+        position: relative;
+        left: 15%;
+
+        width: 70%;
+    }
+
+    .button_book > p{
+        font-size: 5.2vw;
+    }
+
+    .about {
+        display: block;
+        position: relative;
+
+        left: 0;
+        top: 0;
+
+        margin: 50px 0;
+        padding: 0;
+
+        text-align: center;
+
+        font-family: Tahoma;
+        font-size: 4vw;
+        color: #696969;
+
+        text-shadow: 1px 1px 1px #020202;
+    }
+
+    .about > p{
+        font-family: Tahoma;
+        font-weight: bold;
+        font-size: 7vw;
+        color: #696969;
+    }
+}
