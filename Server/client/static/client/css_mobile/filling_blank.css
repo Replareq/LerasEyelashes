@@ -1,0 +1,18 @@
+@media all and (max-width: 900px){
+    .main_manager > h1{
+        font-size: 5vw;
+    }
+
+    form > p {
+        font-size: 5vw;
+    }
+
+    #name, #phone, #comment {
+        font-size: 4.8vw;
+    }
+
+    #comment {
+        min-width: calc(100% - 6px);
+    }
+
+}

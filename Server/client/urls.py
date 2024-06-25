@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path('book/<str:user_month>', views.registration, name="registration"),
+    path('book/filling/', views.filling_blank, name="filling_blank"),
+    path('book/manager_contacts/', views.manager_contacts, name="manager_contacts"),
     path('manager/loging_in/', views.manager_logged_in, name="manager_loging_in"),
     path('manager/loging_out/', views.manager_logged_out, name="manager_loging_out"),
     path('manager/add_client/', views.manager_add_client, name="manager_add_client"),

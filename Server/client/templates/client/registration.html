@@ -15,7 +15,7 @@
 <header>
     <nav>
         <a href="{% url 'home' %}">Домашняя страница</a>
-        <a href="hello">Контакты</a>
+        <a href="{% url 'manager_contacts' %}">Контакты</a>
     </nav>
 </header>
 <div class="booking">
@@ -57,7 +57,7 @@
                         {{ day.0 }} {{ selected_month }} <br/>
                         {% for k, v in day.2.items %}
                             {% if not v %}
-                            <a href="">Свободно в {{k}}</a>
+                            <a href="{% url 'filling_blank'%}?day={{day.0}}&monthYear={{selected_month}}&time={{k}}">Свободно в {{k}}</a>
                             <br/>
                             {% endif %}
                         {% endfor %}
@@ -71,7 +71,7 @@
         </table>
     </div>
     <div class="postscriptum">
-        <p class="paragraph_ps">* Чтобы отменить запись, свяжитесь с <a href="manager_contacts">менеджером</a> по viber или whatsapp.
+        <p class="paragraph_ps">* Чтобы отменить запись, свяжитесь с <a href="{% url 'manager_contacts' %}">менеджером</a> по viber или whatsapp.
     </div>
 </div>
 

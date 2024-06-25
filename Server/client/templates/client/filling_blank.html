@@ -1,0 +1,35 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/filling_blank.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/filling_blank.css' %}">
+<script src="{% static 'client/scripts/filling_blank.js' %}"></script>
+{% endblock %}
+{% block body %}
+<header>
+    <nav>
+        <a href="{% url 'home' %}">Домашняя страница</a>
+        <a href="{% url 'registration' 'now'%}">Вернуться</a>
+    </nav>
+</header>
+<div class="main_manager">
+    <h1>Бронирование на {{book_date.0}} {{book_date.1}} {{book_date.2}} {{book_date.3}}</h1>
+    <div class="block_form">
+        <form method="post" onsubmit="return formValidator(this)">
+            {% csrf_token %}
+            <p>Имя:  <input id="name" name="name" required /></p>
+            <p>Номер телефона: +375  <input name="phone" id="phone" placeholder="(29) 11 11 111" maxlength="13" type="text" oninput="checkPhone();" required /></p>
+            <p>Комментарий:</p>
+            <textarea id="comment" name="comment" placeholder="Оставить комментарий"></textarea><br/>
+            <input id="sumbit_btn" type="submit" value="Забронировать" />
+        </form>
+    </div>
+</div>
+<!--<footer>
+    <nav>
+        <a href="/admin/">Для администратора</a>
+        <a href="{% url 'manager_clients_table' %}">Для менеджера</a>
+    </nav>
+</footer>-->
+{% endblock %}

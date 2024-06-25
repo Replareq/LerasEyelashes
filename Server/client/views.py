@@ -61,6 +61,79 @@ def registration(request: HttpRequest, user_month: str) -> HttpResponse:
                                                         })
 
 
+def filling_blank(request: HttpRequest) -> HttpResponse:
+    day = request.GET.get("day")
+    month = request.GET.get("monthYear").split()[0]
+    year = request.GET.get("monthYear").split()[1]
+    time = request.GET.get("time")
+
+    all_month = ("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                 "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
+
+    cur_year = int(year)
+    cur_day = int(day)
+
+    cur_time = int(time.split(":")[0])
+
+    if month in all_month:
+        cur_month = all_month.index(month) + 1
+    else:
+        return HttpResponse("ERROR, month is not in all months")
+
+    if request.method == "GET":
+        the_tittle = "Ввод данных"
+
+        # Заблокировать бронь в БД??
+        return render(request, "client/filling_blank.html", context={"the_tittle": the_tittle,
+                                                                     "book_date": (day, month, year, time),
+                                                                     })
+    else:
+        # the_tittle = "Успешно зарегестрировались"
+
+        user_name = request.POST.get('name')
+        user_tel = int(''.join(c for c in request.POST.get('phone') if c.isdigit()))
+        user_comment = request.POST.get('comment')
+
+        try:
+            client = Client.objects.get(phone=user_tel)
+        except ObjectDoesNotExist:
+            client = Client.objects.create(name=user_name, phone=user_tel, ban=False,
+                                           history=" Добавлен " + datetime.now().strftime("%d.%m.%Y %H:%M") + ";\n")
+
+        if client.ban:
+            messages.error(request, 'Телефон забанен на сайте. Вы не можете сделать запись. '
+                                    'Обратитесь к менеджеру сайта.')
+            return redirect(registration, "now")
+
+        try:
+            book_day = Booked.objects.get(datetime__year=cur_year,
+                                          datetime__month=cur_month,
+                                          datetime__day=cur_day,
+                                          datetime__hour=cur_time, )
+
+            if book_day.client is None:
+                client.history = client.history + "Записан на " + book_day.datetime.strftime("%d.%m.%Y %H:%M") + ";\n"
+                client.save(update_fields=["history"])
+                book_day.client = client
+                book_day.comment = user_comment
+                book_day.save(update_fields=["client", "comment"])
+
+                # Проверить, а действительно ли тот клиент зарегестрирован
+                messages.success(request, 'Вы успешно зарегестрированы.')
+                return redirect(registration, "now")
+            else:
+                messages.error(request, 'Возникла ошибка. Это бронирование уже занято.')
+                return redirect(registration, "now")
+
+        except ObjectDoesNotExist:
+            return HttpResponse(f"ERROR, ObjectDoesNotExist {cur_day}.{cur_month}.{cur_year} {cur_time}. POST METHOD")
+
+
+def manager_contacts(request: HttpRequest) -> HttpResponse:
+    the_tittle = "Контакты с менеджером"
+    return render(request, "client/manager_contacts.html", context={"the_tittle": the_tittle, })
+
+
 def manager_logged_in(request: HttpRequest) -> HttpResponse:
     the_tittle = "Вход на страницу менеджера"
     if request.method == "GET":

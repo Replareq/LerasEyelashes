@@ -1,0 +1,34 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/manager_contacts.css' %}">
+{% endblock %}
+{% block body %}
+<header>
+    <nav>
+        <a href="{% url 'home' %}">Домашняя страница</a>
+        <a href="{% url 'registration' 'now' %}">Забронировать</a>
+    </nav>
+</header>
+<div id="blockContacts">
+    <div class="contacts">
+        <p>Пожалуйста, не звоните, а пишите через viber или whatsapp.</p>
+        <p>Номер телефона: +375 (11) 11 11 111 </p>
+        <p>Ссылка в VK: <a href="https://vk.com/">ВКонтакте</a></p>
+        <H2>О сайте</H2>
+        <p class="about">Сайт предназначен для бронирования записи наращивания ресниц. Вы можете найти на сайте информацию
+            о текущих свободных записей, выбрать один из них и забронировать. На сайте также есть страница контактов,
+            на случай если нужно отменить бронирование, сообщить об ошибки сайта или связаться с администратором.
+            Отдел сайта "для дминистратора" предназначен только администратору. Пожалуйста, соблюдайте правила сайта.
+        </p>
+    </div>
+</div>
+
+<!--<footer>
+    <nav>
+        <a href="/admin/">Для администратора</a>
+        <a href="{% url 'manager_clients_table' %}">Для менеджера</a>
+    </nav>
+</footer>-->
+{% endblock %}
