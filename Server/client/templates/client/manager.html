@@ -1,0 +1,22 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+    <script>alert("{{ message|safe }}");</script>
+    {% endfor %}
+{% endif %}
+<header>
+    <nav>
+        <a href="{% url 'home' %}">Домашняя страница</a>
+        <a href="{% url 'manager_loging_out' %}">Выйти</a>
+    </nav>
+</header>
+{% block table%}
+{% endblock %}
+<footer>
+    <nav>
+        <a href="/admin/">Для администратора</a>
+    </nav>
+</footer>
+{% endblock %}

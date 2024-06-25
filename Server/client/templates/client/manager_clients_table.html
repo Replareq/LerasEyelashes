@@ -1,0 +1,86 @@
+{% extends 'client/manager.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/manager_clients_table.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/manager_clients_table.css' %}">
+<script>
+    var csrf = "{{ csrf_token }}";
+    var remove_client_link = "{% url 'manager_remove_client' %}";
+    var change_link = "{% url 'manager_change_client' %}";
+</script>
+<script src="{% static 'client/scripts/manager_clients_table.js' %}"></script>
+{% endblock %}
+{% block table%}
+<div class="main_manager">
+    <div class="headingH1">Страница менеджера</div>
+    <div class="tittleBlock" id="tittleMainBlock">Клиенты</div>
+    <a href="{% url 'manager_booking_table' %}"><div class="tittleBlock">Бронирование</div></a>
+    <a href="{% url 'manager_calendar' %}"><div class="tittleBlock">Календарь</div></a>
+    <div id="clientsBlock">
+        <input id="searchClient" name="search" placeholder="поиск" type="text"/>
+        <button id="searchClientButton" onclick="toDoSearchClient()">🔍</button>
+        <button id="addClientButton" onclick="changeHiddenAddClient()">Добавить пользователя</button>
+        <button id="removeClientButton" onclick="removeClient()">Удалить выбранных пользователей</button>
+        <br/>
+        <div id="addClientBlock" hidden>
+            <form action="{% url 'manager_add_client' %}" method="POST" onsubmit="return formClientValidator(this)">
+                {% csrf_token %}
+                <input id="clientAddName" name="clientAddName" placeholder="Имя" type="text" required/><br/>
+                <input id="clientAddTel" name="clientAddTel" placeholder="Телефон" type="text" maxlength="13" oninput="checkPhone()"  required/>
+                <label><input id="clientAddBan" name="clientAddBan" type="checkbox"/>Бан</label><br/>
+                <textarea name="clientAddHistory" class="client_history" placeholder="Логи клиента"></textarea><br/>
+                <input name="clientsBlock" value="Добавить пользователя" type="submit"/>
+            </form>
+        </div>
+        <br/>
+        <div class="tableDivStyle">
+            <table>
+            <tr>
+                <th> <input id="clients_choose" type="checkbox" onclick="onClickCheckClient(id)"/> </th>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Телефон</th>
+                <th>Бан</th>
+                <th>История</th>
+                <!--<th>Изменить</th>-->
+            </tr>
+            {% for client in clients %}
+            <tr>
+                <td class="tableCheckClient">
+                    <input id="{{client.phone}}" class="checkbox_client" type="checkbox"/>
+                </td>
+                <td class="tableIDClient">
+                    {{client.id}}
+                </td>
+                <td class="tableNameClient">
+                    <div id="table{{client.phone}}Name">{{client.name}}</div>
+                </td>
+                <td class="tableTelClient">
+                    <div id="table{{client.phone}}Tel">{{client.phone}}</div>
+                </td>
+                <td class="tableBanClient">
+                    <button onclick="changeBanClient({{client.phone}})">
+                    {% if client.ban %}
+                    Unban
+                    {% else %}
+                    Ban
+                    {% endif %}
+                    </button>
+                </td>
+                <td class="tableHistoryClient">
+                    <div class="tableHistoryClient">{{client.history}}</div>
+                </td>
+                <!--<td>
+                    Не использовать
+                    <button id="edit{{client.phone}}Button" class="edit_client_button" onclick="editClient({{client.phone}})">Редактировать</button>
+                    <button id="change{{client.phone}}Button" class="change_client_button" onclick="changeClient({{client.phone}})" hidden>Изменить</button>
+                </td>-->
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+
+    </div>
+</div>
+{% endblock%}

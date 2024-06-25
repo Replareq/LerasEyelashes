@@ -1,0 +1,31 @@
+form {
+    position: relative;
+    width: 90%;
+    left: 5%;
+
+    box-shadow: 0 0 2px #000000;
+
+    margin: 25px 0;
+    padding: 25px 0;
+}
+
+form > p, form > input {
+    position: relative;
+    width: 30%;
+    left: 35%;
+
+    font-family: Tahoma;
+    font-size: 16px;
+    color: #696969;
+
+    text-align: center;
+    text-shadow: 0 0 1px #020202;
+
+    margin: 10px 0;
+}
+
+form > input[type="submit"]{
+    width: 20%;
+    left: 40.5%;
+}
+

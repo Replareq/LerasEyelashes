@@ -1,0 +1,78 @@
+{% extends 'client/manager.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/manager_booking_table.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/manager_booking_table.css' %}">
+<script>
+    var csrf = "{{ csrf_token }}";
+    var remove_booking_link = "{% url 'manager_remove_booking' %}";
+</script>
+<script src="{% static 'client/scripts/manager_booking_table.js' %}"></script>
+{% endblock %}
+{% block table%}
+<div class="main_manager">
+    <div class="headingH1">Страница менеджера</div>
+    <a href="{% url 'manager_clients_table' %}"><div class="tittleBlock">Клиенты</div></a>
+    <div class="tittleBlock" id="tittleMainBlock">Бронирование</div>
+    <a href="{% url 'manager_calendar' %}"><div class="tittleBlock">Календарь</div></a>
+    <div id="bookingBlock">
+        <input id="searchBooking" name="search" placeholder="поиск" type="text"/>
+        <button id="searchBookingButton" onclick="toDoSearchBooking()">🔍</button>
+        <button id="addBookingButton" onclick="changeHiddenAddBooking()">Добавить новые записи</button>
+        <button id="removeBookingButton" onclick="removeBooking()">Удалить выбранные записи</button>
+        <br/>
+        <div id="addBookingBlock" hidden>
+            <form id="formAddBooking" action="{% url 'manager_add_booking' %}" method="POST">
+                {% csrf_token %}
+                <p id="pTime">Время:</p>
+                <input id="time" class="inputTime" name="time" type="time" required/>
+                <button id="addTimeBooking" onclick="addTimesBookingButton(this)" type="button">+</button>
+                <br/>
+                <p>Дата начала: <input name="startDate" type="date" required/> </p>
+                <p>Дата конца: <input name="endDate" type="date" required/> </p>
+                <input name="bookingBlock" value="Добавить запись(и)" type="submit"/>
+            </form>
+        </div>
+        <br/>
+        <div class="tableDivStyle">
+            <table>
+            <tr>
+                <th> <input id="booking_choose" type="checkbox" onclick="onClickCheckBooking(this)"/> </th>
+                <th>ID</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Клиент</th>
+                <th>Телефон</th>
+                <th>Комментарий</th>
+            </tr>
+            {% for book in booking %}
+            <tr>
+                <td class="tableCheckClient">
+                    <input id="check{{book.id}}" class="checkbox_booking" type="checkbox"/>
+                </td>
+                <td class="tableIDClient">
+                    {{book.id}}
+                </td>
+                <td class="tableDateBooking">
+                    <div>{{book.datetime.date}}</div>
+                </td>
+                <td class="tableTimeBooking">
+                    <div>{{book.datetime.time}}</div>
+                </td>
+                <td class="tableNameClient">
+                    <div>{{book.client.name}}</div>
+                </td>
+                <td class="tableTelClient">
+                    <div>{{book.client.phone}}</div>
+                </td>
+                <td class="tableCommentClient">
+                    <div>{{book.comment}}</div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+</div>
+{% endblock%}

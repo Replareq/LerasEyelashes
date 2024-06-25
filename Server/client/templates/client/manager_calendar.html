@@ -1,0 +1,53 @@
+{% extends 'client/manager.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/manager_calendar.css' %}">
+<link rel="stylesheet" href="{% static 'client/css_mobile/manager_calendar.css' %}">
+<script src="{% static 'client/scripts/manager_calendar.js' %}"></script>
+{% endblock %}
+{% block table%}
+<div class="main_manager">
+    <div class="headingH1">Страница менеджера</div>
+    <a href="{% url 'manager_clients_table' %}"><div class="tittleBlock">Клиенты</div></a>
+    <a href="{% url 'manager_booking_table' %}"><div class="tittleBlock">Бронирование</div></a>
+    <div class="tittleBlock" id="tittleMainBlock">Календарь</div>
+    <div id="calendarBlock">
+        <button id="prevMonth" onclick="prevMonth('{{selected_month}}',{{selected_year}},{{all_months}})">Предыдущий месяц</button>
+        <input id="selectedYear" value="{{ selected_month }} {{ selected_year }}" disabled/>
+        <button id="nextMonth" onclick="nextMonth('{{selected_month}}',{{selected_year}},{{all_months}})">Следующий месяц</button>
+
+        <div class="tableDivStyle">
+            <table>
+            <tr>
+                <th>ПН</th>
+                <th>ВТ</th>
+                <th>СР</th>
+                <th>ЧТ</th>
+                <th>ПТ</th>
+                <th>СБ</th>
+                <th>ВС</th>
+            </tr>
+            {% for week in month_data %}
+            <tr>
+                {% for day in week %}
+                <td>
+                    {% if day.0 %}
+                    <p class="p_day_table"> {{ day.0 }} </p>
+                        {% for k, v in day.2.items %}
+                            {% if v %}
+                            <p>{{ k }}: {{ v.name }} {{ v.phone }}</p>
+                            {% else %}
+                            <p>{{ k }}: свободно </p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+</div>
+{% endblock%}

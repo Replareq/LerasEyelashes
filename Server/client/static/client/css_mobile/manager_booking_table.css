@@ -1,0 +1,103 @@
+@media all and (max-width: 900px){
+    .headingH1{
+        font-size: 5vw;
+    }
+
+    .tittleBlock{
+        width: calc((90% - 18px) / 3);
+
+        font-size: 3vw;
+    }
+
+    #clientsBlock, #bookingBlock{
+        border-radius: 0 0 5px 5px;
+    }
+
+    #searchClient, #searchClientButton, #addClientButton, #removeClientButton,
+    #searchBooking, #searchBookingButton, #addBookingButton, #removeBookingButton{
+        width: 90%;
+        left: 5%;
+
+        font-size: 4vw;
+
+        margin: 0 0;
+    }
+
+    #searchClient, #searchBooking{
+        width: 70%;
+    }
+
+    #searchClientButton, #searchBookingButton {
+        position: absolute;
+        top: 25px;
+        left: auto;
+        right: 5%;
+        width: 10%;
+    }
+
+    #addClientButton, #removeClientButton, #addBookingButton, #removeBookingButton {
+        display: block;
+
+        margin-top: 20px;
+    }
+
+    #addClientBlock > form > input,  #addClientBlock > form > textarea, #addClientBlock > form > label {
+        width: 90%;
+        left: 4%;
+
+        font-size: 5vw;
+    }
+
+    #addClientBlock > form > textarea {
+        min-width: 90%;
+        max-width: 90%;
+
+        min-height: 100px;
+        max-height: 100px;
+    }
+
+    #formAddBooking * {
+        font-size: 4vw;
+    }
+
+    .tableDivStyle{
+        overflow-y: auto;
+    }
+
+    th {
+        font-size: 3vw;
+    }
+
+    .tableIDClient{
+        font-size: 3.5vw;
+    }
+
+    .tableNameClient > div, .tableTelClient > div, .tableHistoryClient, .tableBanClient > button,
+    .tableDateBooking > div, .tableTimeBooking > div, .tableCommentClient > div{
+        font-size: 2.5vw;
+    }
+
+    table{
+         table-layout: fixed;
+
+         width: auto;
+    }
+
+    .tableHistoryClient{
+        width: 300px;
+
+        padding: 4px 7px;
+    }
+
+    .tableDateBooking > div{
+        width: 100px;
+    }
+
+    .tableNameClient > div {
+        width: 20vw;
+    }
+
+    .tableCommentClient > div{
+        width: 300px;
+    }
+}

@@ -1,0 +1,20 @@
+{% extends 'client/base.html' %}
+{% load static %}
+{% block tittle %} {{the_tittle}} {% endblock %}
+{% block stylelink %}
+<link rel="stylesheet" href="{% static 'client/css/loggedinstyle.css' %}">
+{% endblock %}
+{% block body %}
+<div class="block_form">
+    <form method="post">
+        {% csrf_token %}
+        <p>Вход в систему</p>
+        <input id="login" name="login" placeholder="Логин" type="text" required /><br/>
+        <input id="password" name="password" placeholder="Пароль" type="password" required /><br/>
+        {% if error %}
+        <p>Неправильный логин и\или пароль</p>
+        {% endif %}
+        <input type="submit" value="Войти" />
+    </form>
+</div>
+{% endblock %}
